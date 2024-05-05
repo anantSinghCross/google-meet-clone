@@ -14,13 +14,18 @@ app.get("/", (req, res, next) => {
   res.status(200).send("Server Response");
 });
 
-io.on('connection', (socket) => {
-  socket.emit('me', socket.id);
-  socket.emit('callEnded', socket.id);
-  socket.on('disconnect', (data) => {
-    console.log(data);
-  })
-})
+io.on("connection", (socket) => {
+  socket.emit("me", socket.id);
+  console.log(socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+
+  socket.on("message-user", (toUser) => {
+    io.to(toUser.socketId).emit("message", toUser.payload);
+  });
+});
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
