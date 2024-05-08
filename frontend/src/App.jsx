@@ -8,9 +8,11 @@ function App() {
   return (
     <div className='flex flex-col'>
       <Header/>
-      <Notifications/>
-      <VideoPlayer/>
-      <Options/>
+      <div className='p-4'>
+        <Notifications/>
+        <VideoPlayer/>
+        <Options/>
+      </div>
     </div>
   )
 }
