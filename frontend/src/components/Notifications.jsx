@@ -1,9 +1,20 @@
-import React from 'react'
+import { useContext } from "react";
+import { SocketContext } from "../Context";
 
-function Notifications() {
-  return (
-    <div>Notifications</div>
-  )
-}
+const Notifications = () => {
+    const { answerCall, call, callAccepted } = useContext(SocketContext);
 
-export default Notifications
+    return (
+        <>
+            {call.isReceivingCall && !callAccepted && (
+                <div className="flex">
+                    <h3> {call.name} is calling </h3>
+                    <button onClick={answerCall}>
+                        Answer Call
+                    </button>
+                </div>
+            )}
+        </>
+    );
+};
+export default Notifications;
