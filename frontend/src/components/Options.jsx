@@ -8,13 +8,6 @@ function Options() {
 
   return (
     <div className='flex gap-2 mt-2'>
-      <input 
-        className='px-2 py-1 border rounded-md outline-blue-400' 
-        placeholder='User ID' 
-        type="text" 
-        value={idToCall} 
-        onChange={(e) => setIdToCall(e.target.value)}
-      />
       {
         callAccepted && !callEnded ? (
             <button 
@@ -24,12 +17,21 @@ function Options() {
                 End Call
             </button>
         ) : (
+          <>
+            <input 
+              className='px-2 py-1 border rounded-md outline-blue-400' 
+              placeholder='User ID' 
+              type="text" 
+              value={idToCall} 
+              onChange={(e) => setIdToCall(e.target.value)}
+            />
             <button 
               className='px-3 py-1 bg-blue-500 text-white rounded-md shadow font-semibold text-sm' 
               onClick={() => callUser(idToCall)}
             >
                 Call
             </button>
+          </>
         )
       }
 
